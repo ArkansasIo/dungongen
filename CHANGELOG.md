@@ -2,6 +2,10 @@
 
 All notable releases of D20 Dungeon Studio are documented here.
 
+## Development credits
+
+D20 Dungeon Studio is developed and packaged under the **Endgame Studio** development-studio identity.
+
 ## [Unreleased]
 
 Current development work is tracked on `main`.
