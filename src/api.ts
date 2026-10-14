@@ -21,15 +21,20 @@ const json = (options: GenerateOptions): RequestInit => ({
   body: JSON.stringify(options)
 });
 
-const staticStore = staticMode ? createStaticBackend() : null;
+let staticStore: ReturnType<typeof createStaticBackend> | null = null;
 const COLLECTION = "dungeons";
+function getStaticStore() {
+  if (!staticMode) return null;
+  return staticStore ??= createStaticBackend();
+}
 
 function localId(): number {
   return Date.now() * 1000 + Math.floor(Math.random() * 1000);
 }
 
 export async function generateDungeon(options: GenerateOptions): Promise<Dungeon> {
-  if (staticStore) return generateLocalDungeon(options);
+  const store = getStaticStore();
+  if (store) return generateLocalDungeon(options);
   return request<Dungeon>("/dungeons/generate", json(options));
 }
 
@@ -37,19 +42,19 @@ export async function saveDungeon(options: GenerateOptions): Promise<Dungeon> {
   if (!staticStore) return request<Dungeon>("/dungeons", json(options));
   const dungeon = generateLocalDungeon(options);
   const value: Dungeon = { ...dungeon, id: localId(), createdAt: new Date().toISOString() };
-  await staticStore.put(COLLECTION, { ...value, id: String(value.id) });
+  await store!.put(COLLECTION, { ...value, id: String(value.id) });
   return value;
 }
 
 export async function listDungeons(): Promise<Array<Pick<Dungeon, "id"|"name"|"seed"|"level"|"theme"|"createdAt">>> {
   if (!staticStore) return request("/dungeons");
-  const values = await staticStore.list<Dungeon & { id: string }>(COLLECTION);
+  const values = await store!.list<Dungeon & { id: string }>(COLLECTION);
   return values.map(value => ({ ...value, id: Number(value.id) }));
 }
 
 export async function loadDungeon(id: number): Promise<Dungeon> {
   if (!staticStore) return request<Dungeon>("/dungeons/" + id);
-  const value = await staticStore.get<Dungeon & { id: string }>(COLLECTION, String(id));
+  const value = await store!.get<Dungeon & { id: string }>(COLLECTION, String(id));
   if (!value) throw new Error("Dungeon not found");
   return { ...value, id: Number(value.id) };
 }
