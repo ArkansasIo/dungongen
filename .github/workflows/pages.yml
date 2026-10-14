@@ -19,10 +19,14 @@ jobs:
         with:
           node-version: 20
           cache: npm
-      - run: npm install
-      - run: npm run build
+      - run: npm ci
+      - name: Type-check frontend
+        run: npx tsc -p tsconfig.json --noEmit
+      - name: Build frontend
+        run: npx vite build
         env:
           VITE_API_BASE_URL: ${{ vars.VITE_API_BASE_URL }}
+          VITE_BACKEND_MODE: static
       - uses: actions/upload-pages-artifact@v3
         with:
           path: ./dist
