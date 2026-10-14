@@ -1,5 +1,9 @@
 # D20 Dungeon Studio Release Process
 
+## Studio identity
+
+**Endgame Studio** is the credited development-studio identity for D20 Dungeon Studio. Release packages, release notes, and project-facing documentation should identify Endgame Studio as the developer/studio credit.
+
 ## Build identity
 
 Every packaged build should carry three identifiers:
