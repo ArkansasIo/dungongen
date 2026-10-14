@@ -7,10 +7,13 @@
     "dev": "concurrently -k \"npm:dev:api\" \"npm:dev:web\"",
     "dev:api": "tsx watch server/src/index.ts",
     "dev:web": "vite --host 0.0.0.0",
-    "build": "tsc -p server/tsconfig.json && vite build",
+    "build": "npm run typecheck:server && npm run typecheck:client && vite build",
     "start": "node server/dist/index.js",
     "test": "vitest run",
-    "db:migrate": "tsx server/src/db/migrate.ts"
+    "db:migrate": "tsx server/src/db/migrate.ts",
+    "typecheck:client": "tsc -p tsconfig.json --noEmit",
+    "typecheck:server": "tsc -p server/tsconfig.json --noEmit",
+    "check": "npm run typecheck:client && npm run typecheck:server && npm test"
   },
   "dependencies": {
     "cors": "^2.8.5",
