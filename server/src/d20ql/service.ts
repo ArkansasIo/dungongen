@@ -24,7 +24,7 @@ export async function executeD20QLOnMySQL(connection: mysql.Connection, program:
   await connection.beginTransaction();
   try {
     for (const query of queries) {
-      if ((query.sql.match(/\\?/g) ?? []).length !== query.params.length) throw new Error("D20QL parameter count mismatch");
+      if ((query.sql.match(/\?/g) ?? []).length !== query.params.length) throw new Error("D20QL parameter count mismatch");
       await connection.execute(query.sql, query.params);
     }
     await connection.commit();
