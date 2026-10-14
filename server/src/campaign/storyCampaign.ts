@@ -108,8 +108,8 @@ export function buildStoryCampaign(): StoryCampaign {
       const chapterId = `${actId}-chapter-${chapter}`;
       const mainQuestIds: string[] = [];
       const sideQuestIds: string[] = [];
-      const mainCount = chapter === 5 ? 3 : 2;
-      const sideCount = chapter === 1 || chapter === 5 ? 1 : 2;
+      const mainCount = 2;
+      const sideCount = 2;
 
       for (let n = 1; n <= mainCount; n++) {
         const id = `${chapterId}-main-${n}`;
