@@ -1,6 +1,6 @@
 import type {D20Program,D20Statement} from './types';
 
-const tokenise=(source:string)=>source.replace(/[{}]/g,' $& ').split(/\s+/).filter(Boolean);
+const tokenise=(source:string)=>source.match(/"(?:\\\\.|[^"\\\\])*"|[{}]|[^\\s{}]+/g)??[];
 const quoted=(s:string)=>s.replace(/^"|"$/g,'');
 export function parseD20QL(source:string):D20Program{
  const t=tokenise(source);let i=0;const statements:D20Statement[]=[];
