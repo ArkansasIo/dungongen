@@ -1,0 +1,11 @@
+import express from 'express';
+import cors from 'cors';
+import {config} from './config.js';
+import {pool} from './db/pool.js';
+import routes from './routes/dungeons.js';
+const app=express();app.disable('x-powered-by');app.use(cors({origin:config.CLIENT_ORIGIN}));app.use(express.json({limit:'256kb'}));
+app.get('/api/health',async(_req,res)=>{try{await pool.query('SELECT 1');res.json({status:'ok',database:'connected'})}catch{res.status(503).json({status:'degraded',database:'unavailable'})}});
+app.use('/api/dungeons',routes);
+app.use((err:unknown,_req:express.Request,res:express.Response,_next:express.NextFunction)=>{console.error(err instanceof Error?err.message:'Unhandled server error');res.status(500).json({error:'Internal server error'})});
+const server=app.listen(config.API_PORT,()=>console.log(`Dungeon API listening on http://localhost:${config.API_PORT}`));
+for(const signal of ['SIGINT','SIGTERM'] as const)process.on(signal,()=>server.close(()=>{void pool.end().finally(()=>process.exit(0))}));
