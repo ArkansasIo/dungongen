@@ -20,10 +20,10 @@ jobs:
           node-version: 20
           cache: npm
       - run: npm install
-      - name: Type-check frontend
-        run: npx tsc -p tsconfig.json --noEmit
-      - name: Build frontend
-        run: npx vite build
+      - name: Run tests
+        run: npm test
+      - name: Build frontend and server
+        run: npm run build
         env:
           VITE_API_BASE_URL: ${{ vars.VITE_API_BASE_URL }}
           VITE_BACKEND_MODE: static
