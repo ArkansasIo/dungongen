@@ -73,26 +73,30 @@ export function generateExpansionQuests(expansionNumber: number): GeneratedQuest
   const quests: GeneratedQuest[] = [];
   for (let act = 1; act <= expansion.acts; act++) {
     for (let chapter = 1; chapter <= expansion.chaptersPerAct; chapter++) {
-      for (let n = 1; n <= 10; n++) {
-        const kind: QuestKind = n <= 5 ? "main" : "side";
-        const index = kind === "main" ? n : n - 5;
+      for (let n = 1; n <= 2; n++) {
+        const kind: QuestKind = n === 1 ? "main" : "side";
+        const index = 1;
         const objective: QuestObjective =
-          chapter === 5 && n === 5 ? "boss" : OBJECTIVES[(act + chapter + n) % OBJECTIVES.length];
+          chapter === expansion.chaptersPerAct && n === 1 ? "boss" : OBJECTIVES[(act + chapter + n) % OBJECTIVES.length];
         quests.push({
           id: `${expansion.id}-act-${act}-chapter-${chapter}-${kind}-${index}`,
           campaignId: expansion.id,
           expansionId: expansion.id,
           act, chapter, index, kind,
-          title: `${CHAPTER_LABELS[chapter - 1]} ${kind === "main" ? "Mission" : "Optional Task"} ${act}.${chapter}.${index}`,
+          title: `${CHAPTER_LABELS[chapter - 1]} ${kind === "main" ? "Mission" : "Optional Task"} ${act}.${chapter}`,
           summary: `Advance the original story of ${expansion.title} through its ${expansion.theme} setting.`,
           objective,
           required: objective === "boss" ? 1 : 2 + ((act + chapter + n) % 4),
           xpReward: (kind === "main" ? 700 : 350) + act * 150 + chapter * 60,
           currencyReward: (kind === "main" ? 100 : 50) + act * 25 + chapter * 5,
           lootTableId: `expansion-${expansion.number}-${rarityForProgress((act - 1) / Math.max(1, expansion.acts - 1))}`,
-          prerequisiteIds: kind === "main" && index > 1
-            ? [`${expansion.id}-act-${act}-chapter-${chapter}-main-${index - 1}`]
-            : []
+          prerequisiteIds: kind === "main"
+            ? (chapter === 1 && act > 1
+              ? [`${expansion.id}-act-${act - 1}-chapter-${expansion.chaptersPerAct}-main-1`]
+              : chapter > 1
+                ? [`${expansion.id}-act-${act}-chapter-${chapter - 1}-main-1`]
+                : [])
+            : [`${expansion.id}-act-${act}-chapter-${chapter}-main-1`]
         });
       }
     }
