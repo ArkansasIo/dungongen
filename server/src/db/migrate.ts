@@ -1,4 +1,3 @@
-import 'dotenv/config';
 import {readFile} from 'node:fs/promises';
 import {resolve} from 'node:path';
 import mysql from 'mysql2/promise';
