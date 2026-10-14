@@ -18,7 +18,7 @@ export interface EncounterDefinition { id:string; name:string; level:number; ene
 
 export const ENCOUNTERS: EncounterDefinition[] = [
   {id:"ashen-road-patrol",name:"Ashen Road Patrol",level:1,enemyIds:["ashen-raider","ashen-raider"],rewardMultiplier:1},
-  {id:"stone-vault",name:"Stone Vault",level:3,enemyIds:["stone-watcher","ash​en-raider"],rewardMultiplier:1.2},
+  {id:"stone-vault",name:"Stone Vault",level:3,enemyIds:["stone-watcher","ashen-raider"],rewardMultiplier:1.2},
   {id:"blackglass-siege",name:"Blackglass Siege",level:8,enemyIds:["blackglass-knight","bog-hunter"],rewardMultiplier:1.5},
   {id:"hollow-star-sanctum",name:"Hollow-Star Sanctum",level:12,enemyIds:["hollow-star-warden"],rewardMultiplier:2},
   {id:"veiled-legion-throne",name:"Veiled Legion Throne",level:20,enemyIds:["veiled-legion-commander"],rewardMultiplier:2.5}
