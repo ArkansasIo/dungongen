@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+<title id="title">Tabletop command seal</title>
+<desc id="desc">A medieval fantasy command seal with a dungeon gate and crossed dice.</desc>
+<defs><linearGradient id="g" x1="0" x2="1"><stop stop-color="#182536"/><stop offset="1" stop-color="#314a62"/></linearGradient></defs>
+<circle cx="256" cy="256" r="238" fill="url(#g)" stroke="#b7c5d6" stroke-width="10"/>
+<circle cx="256" cy="256" r="205" fill="none" stroke="#6f8298" stroke-width="3" stroke-dasharray="8 12"/>
+<path d="M150 335V220l106-85 106 85v115H150Z" fill="none" stroke="#e2e8ef" stroke-width="14"/>
+<path d="M205 335v-80h102v80M175 220h162" fill="none" stroke="#e2e8ef" stroke-width="12"/>
+<path d="m157 150 62 62M355 150l-62 62" stroke="#d6a85c" stroke-width="16" stroke-linecap="round"/>
+<text x="256" y="405" text-anchor="middle" fill="#d6a85c" font-family="serif" font-size="34" letter-spacing="6">D20QL</text>
+</svg>
