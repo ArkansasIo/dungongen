@@ -1,0 +1,1 @@
+export const GAME_CONFIG={title:'D20 Medieval Dominion',tickMode:'turn-based',turnDurationLabel:'1 year per turn',map:{width:48,height:32},eraOptions:['ancient','classical','medieval','late-medieval'],maxFactions:12,features:['fog-of-war','resources','roads','rivers','settlements','economy','research','diplomacy','military','quests','dungeons','trade','random-events'] as const};
