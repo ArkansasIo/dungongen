@@ -22,7 +22,7 @@ const NAV:Page[]=[
 ];
 
 const pageText:Record<string,{title:string;subtitle:string;metric:string;description:string}>={
- dashboard:{title:'Command Center',subtitle:'D20 Dungeon Studio',metric:'LIVE CAMPAIGN',description:'Your campaign, world, character, quest and dungeon systems are ready from one command-center workspace.'},
+ skirmish:{title:'RTS Skirmish',subtitle:'Playable D20 RTS',metric:'SKIRMISH',description:'Play the D20 real-time strategy demo.'},\n dashboard:{title:'Command Center',subtitle:'D20 Dungeon Studio',metric:'LIVE CAMPAIGN',description:'Your campaign, world, character, quest and dungeon systems are ready from one command-center workspace.'},
  'campaign-overview':{title:'Campaign Overview',subtitle:'Campaign',metric:'ACT I',description:'Track the active campaign, acts, chapters, milestones and narrative state.'},
  'campaign-acts':{title:'Acts & Chapters',subtitle:'Campaign',metric:'12 ACTS',description:'Organize campaign acts, chapters, scenes and progression gates.'},
  'campaign-quests':{title:'Campaign Quests',subtitle:'Campaign',metric:'240 QUESTS',description:'Manage main and side quests, objectives, rewards and completion state.'},
@@ -85,7 +85,7 @@ export default function App(){
   <main className="studio-main">
    <header className="studio-header"><div><div className="breadcrumb">D20 DUNGEON STUDIO <span>/</span> {parent} <span>/</span> {current?.label}</div><h1>{info.title}</h1><p>{info.subtitle} · {info.description}</p></div><div className="header-status"><span>● ONLINE</span><strong>{info.metric}</strong></div></header>
    <section className="studio-hero"><div><span className="eyebrow">THE SHATTERED REALMS · ACT I</span><h2>Explore. Quest. Battle. Build Your Legend.</h2><p>Dark command-center presentation with persistent navigation, page-level layouts and reusable D20 studio assets.</p></div><VisualAsset kind={page.includes('dungeon')?'dungeon':page.includes('character')?'character':page.includes('world')||page==='map'?'world':'sigil'}/></section>
-   {page==='dashboard'&&<Dashboard world={world} setPage={setPage}/>}}
+   {page==='dashboard'&&<Dashboard world={world} setPage={setPage}/>}\n   {page==='skirmish'&&<RtsPage/>}
    {(page==='world'||page==='world-map'||page==='map'||page==='map-world'||page==='map-regions'||page==='world-regions'||page==='world-factions'||page==='world-settlements')&&<WorldPage world={world} era={era} setEra={setEra} seed={seed} setSeed={setSeed} regenerate={()=>setWorld(generateWorld(seed,48,32,era))}/>}
    {(page==='dungeons'||page==='dungeon-generator')&&<DungeonPage options={dungeonOptions} setOptions={setDungeonOptions} dungeon={dungeon} busy={busy} generate={openDungeon}/>}
    <GenericPage page={page} onNavigate={setPage}/>
