@@ -124,7 +124,7 @@ export function buildStoryCampaign(): StoryCampaign {
           xpReward: 500 + act * 175 + chapter * 75 + n * 50,
           goldReward: 50 + act * 25 + chapter * 10 + n * 5,
           lootTableId: `quest-loot-${lootTier(act, chapter)}`,
-          prerequisiteIds: n === 1 && chapter === 1 ? (act > 1 ? [`act-${act - 1}-chapter-5-main-3`] : []) : [`${chapterId}-main-${n - 1}`]
+          prerequisiteIds: n === 1 && chapter === 1 ? (act > 1 ? [`act-${act - 1}-chapter-5-main-2`] : []) : [`${chapterId}-main-${n - 1}`]
         });
       }
 
