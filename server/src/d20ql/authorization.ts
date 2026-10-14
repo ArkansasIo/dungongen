@@ -1,3 +1,4 @@
-import {hasPermission,type D20Role} from '../../../src/d20ql/authTypes.js';
-export interface Principal{userId:string;role:D20Role;sessionId:string}
-export function authorize(principal:Principal,permission:string){if(!hasPermission(principal.role,permission))throw new Error('FORBIDDEN: '+permission);return true}
+export type ServerRole='superadmin'|'admin'|'gamemaster'|'player'|'spectator';
+export interface Principal{userId:string;role:ServerRole;sessionId:string}
+const grants:Record<ServerRole,string[]>={superadmin:['*'],admin:['users.read','users.write','users.disable','roles.write','settings.read','settings.write','campaigns.create','campaigns.manage','campaigns.moderate','server.audit'],gamemaster:['campaigns.create','campaigns.manage','campaigns.join','campaigns.play','characters.write','worlds.generate','turns.resolve'],player:['campaigns.join','campaigns.play','characters.write'],spectator:['campaigns.join']};
+export function authorize(principal:Principal,permission:string){const p=grants[principal.role]??[];if(!p.includes('*')&&!p.includes(permission))throw new Error('FORBIDDEN: '+permission);return true}
