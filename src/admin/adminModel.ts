@@ -1,4 +1,4 @@
-import type {D20Role} from '../d20ql/authTypes';
+import {hasPermission,type D20Role} from '../d20ql/authTypes';
 export interface AdminPanelSection{key:string;label:string;permission:string}
 export const ADMIN_SECTIONS:AdminPanelSection[]=[
  {key:'dashboard',label:'Dashboard',permission:'settings.read'},
