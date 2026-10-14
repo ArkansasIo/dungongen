@@ -39,22 +39,25 @@ export async function generateDungeon(options: GenerateOptions): Promise<Dungeon
 }
 
 export async function saveDungeon(options: GenerateOptions): Promise<Dungeon> {
-  if (!staticStore) return request<Dungeon>("/dungeons", json(options));
+  const store = getStaticStore();
+  if (!store) return request<Dungeon>("/dungeons", json(options));
   const dungeon = generateLocalDungeon(options);
   const value: Dungeon = { ...dungeon, id: localId(), createdAt: new Date().toISOString() };
-  await store!.put(COLLECTION, { ...value, id: String(value.id) });
+  await store.put(COLLECTION, { ...value, id: String(value.id) });
   return value;
 }
 
 export async function listDungeons(): Promise<Array<Pick<Dungeon, "id"|"name"|"seed"|"level"|"theme"|"createdAt">>> {
-  if (!staticStore) return request("/dungeons");
-  const values = await store!.list<Dungeon & { id: string }>(COLLECTION);
+  const store = getStaticStore();
+  if (!store) return request("/dungeons");
+  const values = await store.list<Dungeon & { id: string }>(COLLECTION);
   return values.map(value => ({ ...value, id: Number(value.id) }));
 }
 
 export async function loadDungeon(id: number): Promise<Dungeon> {
-  if (!staticStore) return request<Dungeon>("/dungeons/" + id);
-  const value = await store!.get<Dungeon & { id: string }>(COLLECTION, String(id));
+  const store = getStaticStore();
+  if (!store) return request<Dungeon>("/dungeons/" + id);
+  const value = await store.get<Dungeon & { id: string }>(COLLECTION, String(id));
   if (!value) throw new Error("Dungeon not found");
   return { ...value, id: Number(value.id) };
 }
