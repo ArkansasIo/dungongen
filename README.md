@@ -2,6 +2,15 @@
 
 An original TypeScript + MySQL procedural fantasy map and tabletop RPG studio. It draws feature inspiration from public-facing dungeon, settlement, and world-map generators without copying source code, branding, artwork, or proprietary tables.
 
+
+## Development credits
+
+**Endgame Studio** — Official development studio and project credit for D20 Dungeon Studio.
+
+Repository: ArkansasIo/dungongen
+
+Endgame Studio is the credited studio identity used for the project's development, release packaging, documentation, and original game systems.
+
 ## Stack
 - React + TypeScript + Vite browser application
 - JavaScript frontend interactions; API uses TypeScript/JavaScript on Express
