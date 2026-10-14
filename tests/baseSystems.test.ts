@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { addItem, createCombatState, createResources, createWorldState, discoverRegion, equipItem, performCombatAttack, spendResource } from "../server/src/game/baseSystems";
+import { addItem, createCombatState, createResources, advanceWorld, createWorldState, discoverRegion, equipItem, performCombatAttack, spendResource } from "../server/src/game/baseSystems";
 
 describe("base game systems", () => {
   it("manages resources and equipment", () => {
@@ -21,7 +21,7 @@ describe("base game systems", () => {
     world = discoverRegion(world, "blackglass");
     expect(world.discoveredRegionIds).toContain("blackglass");
     world = { ...world, turn: 23, day: 1 };
-    const advanced = (await import("../server/src/game/baseSystems")).advanceWorld(world, 2);
+    const advanced = advanceWorld(world, 2);
     expect(advanced.day).toBe(2);
     expect(advanced.turn).toBe(25);
   });
