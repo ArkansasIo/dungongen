@@ -94,7 +94,7 @@ export function completeQuest(
   const lootTable = STORY_CAMPAIGN.lootTables.find((table) => table.id === quest.lootTableId);
   const loot = lootTable ? rollQuestLoot(lootTable, seed + ":" + questId, 1) : [];
   const xp = quest.xpReward;
-  const currency = quest.goldReward;
+  const currency = quest.currencyReward;
   const nextXp = player.xp + xp;
   const levelUps = Math.floor(nextXp / XP_PER_LEVEL);
   const nextPlayer: PlayerState = {
