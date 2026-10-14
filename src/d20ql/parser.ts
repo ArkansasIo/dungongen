@@ -4,7 +4,7 @@ const tokenise=(source:string)=>source.replace(/[{}]/g,' $& ').split(/\s+/).filt
 const quoted=(s:string)=>s.replace(/^"|"$/g,'');
 export function parseD20QL(source:string):D20Program{
  const t=tokenise(source);let i=0;const statements:D20Statement[]=[];
- if(t[i]==='D20QL')i+=1;const version='1.0';
+ let version='1.0'; if(t[i]==='D20QL'){i+=1; if(t[i] && /^\d+\.\d+$/.test(t[i])) version=t[i++];}
  while(i<t.length){
   const k=t[i++];
   if(k==='WORLD'){const era=t[i++],name=quoted(t[i++]);i++;let seed='',width=48,height=32,turnMode='YEARLY';while(i<t.length&&t[i]!=='}'){const x=t[i++];if(x==='SEED')seed=quoted(t[i++]);else if(x==='MAP'){width=Number(t[i++]);i++;height=Number(t[i++]);}else if(x==='TURN')turnMode=t[i++];}if(t[i]==='}')i++;statements.push({kind:'world',era,name,seed,width,height,turnMode});}
