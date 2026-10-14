@@ -1,6 +1,7 @@
 import { AjaxClient } from "./ajaxClient";
 import { DynamicStaticApi } from "./dynamicStaticApi";
 import { DynamicStaticRuntime } from "./dynamicStaticRuntime";
+import { generateDungeon } from "../dungeon/generator";
 
 export type ApiMode = "static" | "server";
 
@@ -22,7 +23,13 @@ export class BackendApi {
     }
 
     const runtime = new DynamicStaticRuntime<object>({});
-    this.staticApi = new DynamicStaticApi(runtime);
+    const api = new DynamicStaticApi(runtime);
+    api.register({
+      method: "POST",
+      path: "/api/dungeons/generate",
+      handler: (request: unknown) => generateDungeon(request as Parameters<typeof generateDungeon>[0])
+    });
+    this.staticApi = api;
     this.ajax = new AjaxClient();
   }
 
