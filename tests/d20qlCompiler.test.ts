@@ -12,6 +12,6 @@ SAVE CAMPAIGN "aurelian-age"`);
     const queries = compileD20QL(program);
     expect(queries).toHaveLength(6);
     expect(queries.every(q => q.sql.includes("?"))).toBe(true);
-    expect(queries.reduce((n,q)=>n+q.params.length,0)).toBe(17);
+    expect(queries.reduce((n,q)=>n+q.params.length,0)).toBe(21);
   });
 });
