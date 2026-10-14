@@ -22,7 +22,8 @@ const NAV:Page[]=[
 ];
 
 const pageText:Record<string,{title:string;subtitle:string;metric:string;description:string}>={
- skirmish:{title:'RTS Skirmish',subtitle:'Playable D20 RTS',metric:'SKIRMISH',description:'Play the D20 real-time strategy demo.'},\ndashboard:{title:'Command Center',subtitle:'D20 Dungeon Studio',metric:'LIVE CAMPAIGN',description:'Your campaign, world, character, quest and dungeon systems are ready from one command-center workspace.'},
+ skirmish:{title:'RTS Skirmish',subtitle:'Playable D20 RTS',metric:'SKIRMISH',description:'Play the D20 real-time strategy demo.'},
+ dashboard:{title:'Command Center',subtitle:'D20 Dungeon Studio',metric:'LIVE CAMPAIGN',description:'Your campaign, world, character, quest and dungeon systems are ready from one command-center workspace.'},
  'campaign-overview':{title:'Campaign Overview',subtitle:'Campaign',metric:'ACT I',description:'Track the active campaign, acts, chapters, milestones and narrative state.'},
  'campaign-acts':{title:'Acts & Chapters',subtitle:'Campaign',metric:'12 ACTS',description:'Organize campaign acts, chapters, scenes and progression gates.'},
  'campaign-quests':{title:'Campaign Quests',subtitle:'Campaign',metric:'240 QUESTS',description:'Manage main and side quests, objectives, rewards and completion state.'},
