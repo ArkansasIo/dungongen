@@ -16,7 +16,7 @@ export default function TabletopBoot({children}:Props){
  },[]);
  if(phase!=='ready') return <div className="boot-screen" role="status" aria-live="polite">
   <div className="boot-frame">
-   <div className="boot-seal"><img src="/dungongen/assets/tabletop/command-seal.svg" alt="D20QL command seal"/></div>
+   <div className="boot-seal"><img src={`${import.meta.env.BASE_URL}assets/tabletop/command-seal.svg`} alt="D20QL command seal"/></div>
    <p className="boot-kicker">D20 DUNGEON STUDIO · TABLETOP SYSTEM</p>
    <h1>{phase==='boot'?'INITIALIZING WORLDWORKS':'LOADING CAMPAIGN'}</h1>
    <p className="boot-line">{phase==='boot'?'Mounting rules engine, map renderer and client services…':'Preparing the dungeon viewport and campaign state…'}</p>
