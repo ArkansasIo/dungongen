@@ -1,0 +1,1 @@
+# D20 RTS Audio\n\nThe playable demo uses original procedural audio. Reserved offline exports include title-theme.ogg, command-select.wav, command-move.wav, weapon-launch.wav, weapon-impact.wav, construction-loop.wav, resource-confirm.wav, warning.wav, victory.wav, and defeat.wav. No commercial game samples are included.\n
