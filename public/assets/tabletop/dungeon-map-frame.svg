@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 640" role="img" aria-labelledby="title desc">
+<title id="title">Dungeon map frame</title>
+<desc id="desc">Decorative fantasy dungeon map frame for the tabletop interface.</desc>
+<rect width="1024" height="640" fill="#111923"/>
+<rect x="24" y="24" width="976" height="592" rx="14" fill="none" stroke="#77899c" stroke-width="8"/>
+<rect x="54" y="54" width="916" height="532" fill="#18222d" stroke="#42566b" stroke-width="3"/>
+<g fill="none" stroke="#5d7185" stroke-width="3">
+<path d="M90 130h220v120h160v-90h190v180h250"/>
+<path d="M150 500V360h180v-80h260v190h220"/>
+<path d="M310 130v120M660 160v180M480 250v110"/>
+</g>
+<g fill="#d6a85c">
+<circle cx="310" cy="250" r="9"/><circle cx="470" cy="160" r="9"/><circle cx="660" cy="340" r="9"/><circle cx="810" cy="500" r="9"/>
+</g>
+<text x="512" y="92" text-anchor="middle" fill="#dbe4ed" font-family="serif" font-size="28" letter-spacing="5">DUNGEON MASTER MAP</text>
+</svg>
