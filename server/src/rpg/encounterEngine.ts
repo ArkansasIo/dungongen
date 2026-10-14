@@ -1,4 +1,4 @@
-import {BOSSES,ENEMIES,LOOT_TABLES,ITEMS,type EnemyDefinition,type Rarity,type WorldLevel} from './endgameContent';
+import {BOSSES,ENEMIES,LOOT_TABLES,ITEMS,type EnemyDefinition,type Rarity,type WorldLevel} from './endgameContent.js';
 
 export type EncounterKind='standard'|'elite'|'boss'|'raid-boss'|'trial';
 export type AffixKind='berserk'|'fortified'|'frenzied'|'venomous'|'arcane'|'vampiric'|'warded'|'unstable';
