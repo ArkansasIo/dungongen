@@ -1,0 +1,5 @@
+import type {BackendConfig,BackendResult,BackendUser} from './backendTypes';
+export function createServerBackend(baseUrl:string){const config:BackendConfig={mode:'server',apiBaseUrl:baseUrl.replace(/\/$/,'')};
+ async function request<T>(path:string,init?:RequestInit):Promise<BackendResult<T>>{try{const r=await fetch(config.apiBaseUrl+path,{credentials:'include',headers:{'Content-Type':'application/json',...(init?.headers??{})},...init});const body=await r.json();return r.ok?{ok:true,data:body}:{ok:false,error:body.error??r.statusText}}catch(e){return{ok:false,error:e instanceof Error?e.message:'Network error'}}}
+ return{config,register:(username:string,email:string,password:string)=>request<BackendUser>('/api/auth/register',{method:'POST',body:JSON.stringify({username,email,password})}),login:(username:string,password:string)=>request<BackendUser>('/api/auth/login',{method:'POST',body:JSON.stringify({username,password})}),logout:()=>request<boolean>('/api/auth/logout',{method:'POST'})};
+}
