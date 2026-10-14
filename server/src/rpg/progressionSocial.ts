@@ -46,7 +46,7 @@ export function awardXp(profile:PlayerProfile,amount:number):PlayerProfile{
  const xp=Math.max(0,profile.xp+Math.floor(amount));
  const total=xp+Array.from({length:Math.max(0,profile.level-1)},(_,i)=>xpForLevel(i+1)).reduce((a,b)=>a+b,0);
  const level=levelFromXp(total);
- return {...profile,xp,totalLevelXp:undefined,level,lastSeenAt:new Date().toISOString()};
+ return {...profile,xp,level,lastSeenAt:new Date().toISOString()};
 }
 export function validateGroupSize(type:'raid'|'dungeon'|'trial',size:number):boolean{
  return type==='raid'?size>=1&&size<=SOCIAL_LIMITS.raidPlayers:type==='dungeon'?size>=SOCIAL_LIMITS.dungeonPlayersMin&&size<=SOCIAL_LIMITS.dungeonPlayersMax:size>=SOCIAL_LIMITS.trialPlayersMin&&size<=SOCIAL_LIMITS.trialPlayersMax;
