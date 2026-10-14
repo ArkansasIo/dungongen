@@ -1,0 +1,12 @@
+import {Router} from 'express';
+import {z} from 'zod';
+import {pool} from '../db/pool.js';
+import {generateDungeon} from '../dungeon/generator.js';
+import type {RowDataPacket,ResultSetHeader} from 'mysql2';
+const router=Router();
+const schema=z.object({name:z.string().trim().min(1).max(120).optional(),seed:z.string().max(80).optional(),width:z.number().int().min(21).max(81),height:z.number().int().min(21).max(61),roomCount:z.number().int().min(4).max(28),level:z.number().int().min(1).max(20),theme:z.string().trim().min(1).max(60)});
+router.post('/generate',(req,res)=>{const p=schema.safeParse(req.body);if(!p.success)return res.status(400).json({error:'Invalid generation options',details:p.error.flatten()});return res.json(generateDungeon(p.data))});
+router.post('/',async(req,res,next)=>{try{const p=schema.safeParse(req.body);if(!p.success)return res.status(400).json({error:'Invalid generation options',details:p.error.flatten()});const d=generateDungeon(p.data);const [result]=await pool.execute<ResultSetHeader>('INSERT INTO dungeons(name,seed,width,height,level,theme,map_json) VALUES(?,?,?,?,?,?,?)',[d.name,d.seed,d.width,d.height,d.level,d.theme,JSON.stringify(d)]);return res.status(201).json({...d,id:result.insertId})}catch(e){return next(e)}});
+router.get('/',async(_req,res,next)=>{try{const [rows]=await pool.query<RowDataPacket[]>('SELECT id,name,seed,level,theme,created_at AS createdAt FROM dungeons ORDER BY created_at DESC LIMIT 100');return res.json(rows)}catch(e){return next(e)}});
+router.get('/:id',async(req,res,next)=>{try{const id=Number(req.params.id);if(!Number.isSafeInteger(id)||id<1)return res.status(400).json({error:'Invalid dungeon ID'});const [rows]=await pool.execute<RowDataPacket[]>('SELECT map_json FROM dungeons WHERE id=?',[id]);if(!rows.length)return res.status(404).json({error:'Dungeon not found'});const d=typeof rows[0].map_json==='string'?JSON.parse(rows[0].map_json):rows[0].map_json;return res.json({...d,id})}catch(e){return next(e)}});
+export default router;
