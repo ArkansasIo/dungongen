@@ -36,3 +36,12 @@ export type {
   WorldState,
   CombatState
 } from "./baseSystems.js";
+
+
+export { createCharacter, grantExperience, unlockAbility, canUseAbility } from "./progressionEngine.js";
+export { ABILITIES } from "./progressionEngine.js";
+export type { CharacterClass, Attributes, CharacterState, AbilityDefinition } from "./progressionEngine.js";
+export { ENEMIES, ENCOUNTERS, createEncounter, performEncounterAttack, encounterRewards } from "./encounterEngine.js";
+export type { EnemyRole, EnemyDefinition, EncounterDefinition } from "./encounterEngine.js";
+export { createDungeon, enterNextRoom, clearCurrentRoom } from "./dungeonEngine.js";
+export type { DungeonRoom, DungeonState } from "./dungeonEngine.js";
