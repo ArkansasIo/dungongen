@@ -9,19 +9,20 @@ export interface CampaignExpansion {
   sideQuests: number;
   totalQuests: number;
   synopsis: string;
+  inspirationPatterns: string[];
   systems: string[];
 }
 
 const DEFINITIONS = [
   ["expansion-01", "The Frostbound March", "winter survival and frontier war", "A northern frontier freezes around a buried citadel whose defenses are waking."],
-  ["expansion-02", "The Emerald Deep", "forest kingdoms and ancient nature magic", "A living wilderness expands across settled lands and demands a dangerous pact."],
-  ["expansion-03", "The Sunken Crown", "underwater ruins and maritime exploration", "Lost cities rise from the sea while rival fleets race to claim their relics."],
-  ["expansion-04", "The Iron Concord", "industrial fantasy and faction warfare", "Five city-states compete to control a new source of magical machinery."],
-  ["expansion-05", "The Shattered Sky", "planar exploration and celestial mystery", "Broken portals connect the realm to hostile skies and impossible worlds."],
-  ["expansion-06", "The Crimson Frontier", "desert exploration and caravan warfare", "A desert empire fractures when an ancient blood-oath is rediscovered."],
-  ["expansion-07", "The Moonlit Court", "faerie politics and supernatural intrigue", "A hidden court offers peace at a price that alters memory and identity."],
-  ["expansion-08", "The Ashen Empire", "undead armies and fallen kingdoms", "A dead empire returns beneath a commander who cannot remember dying."],
-  ["expansion-09", "The Eternal Forge", "endgame war and mythic crafting", "The heroes seek the forge capable of remaking the ancient engine before its enemies reach it."]
+  ["expansion-02", "The Emerald Deep", "mythic nature magic and wilderness factions", "A living wilderness expands across settled lands and demands a dangerous pact."],
+  ["expansion-03", "The Sunken Crown", "maritime exploration and coastal mysteries", "Lost cities rise from the sea while rival fleets race to claim their relics."],
+  ["expansion-04", "The Iron Concord", "magical invention, urban factions, and political intrigue", "Five city-states compete to control a new source of magical machinery."],
+  ["expansion-05", "The Shattered Sky", "planar travel and multiverse exploration", "Broken portals connect the realm to hostile skies and impossible worlds."],
+  ["expansion-06", "The Crimson Frontier", "mythic heroes, desert travel, and epic trials", "A desert empire fractures when an ancient blood-oath is rediscovered."],
+  ["expansion-07", "The Moonlit Court", "magical academies, faerie bargains, and social mysteries", "A hidden court offers peace at a price that alters memory and identity."],
+  ["expansion-08", "The Ashen Empire", "gothic horror, cursed regions, and undead politics", "A dead empire returns beneath a commander who cannot remember dying."],
+  ["expansion-09", "The Eternal Forge", "high-level planar conflict, bastions, and mythic crafting", "The heroes seek the forge capable of remaking the ancient engine before its enemies reach it."]
 ] as const;
 
 export const CAMPAIGN_EXPANSIONS: CampaignExpansion[] = DEFINITIONS.map(
@@ -36,6 +37,17 @@ export const CAMPAIGN_EXPANSIONS: CampaignExpansion[] = DEFINITIONS.map(
     sideQuests: 30,
     totalQuests: 60,
     synopsis,
+    inspirationPatterns: [
+      ["survival campaign design", "environmental hazards", "regional conflict"],
+      ["wilderness exploration", "nature magic", "faction diplomacy"],
+      ["maritime adventure", "underwater exploration", "coastal mysteries"],
+      ["urban intrigue", "magical invention", "guild politics"],
+      ["planar cosmology", "portal travel", "multiverse consequences"],
+      ["mythic trials", "desert expedition", "heroic legends"],
+      ["magical school life", "social mysteries", "faerie bargains"],
+      ["gothic horror", "cursed territories", "undead factions"],
+      ["high-level campaign design", "strongholds and allies", "mythic crafting"],
+    ][index],
     systems: [
       "story-campaign",
       "quest-prerequisites",
