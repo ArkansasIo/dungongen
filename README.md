@@ -7,6 +7,7 @@ An original TypeScript + MySQL procedural fantasy map and tabletop RPG studio. I
 
 **Endgame Studio** — Official development studio and project credit for D20 Dungeon Studio.
 
+GitHub developer/account: **ArkansasIo**  
 Repository: ArkansasIo/dungongen
 
 Endgame Studio is the credited studio identity used for the project's development, release packaging, documentation, and original game systems.
