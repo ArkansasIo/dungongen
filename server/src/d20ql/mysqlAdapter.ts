@@ -1,5 +1,6 @@
 import mysql from 'mysql2/promise';
-import type {D20Program} from '../../src/d20ql/types.js';
+type D20Statement = {kind:'world';era:string;name:string;seed:string;width:number;height:number;turnMode:string}|{kind:'faction';name:string;treasury:number;population:number;military:number;research:number}|{kind:'turn';number:number;orders:{action:string;cost:number}[]}|{kind:'save';kindName:'CAMPAIGN';name:string};
+type D20Program = {version:string;statements:D20Statement[]};
 
 export async function persistD20QL(connection:mysql.Connection,program:D20Program):Promise<void>{
  await connection.beginTransaction();
