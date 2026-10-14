@@ -45,3 +45,6 @@ export { ENEMIES, ENCOUNTERS, createEncounter, performEncounterAttack, encounter
 export type { EnemyRole, EnemyDefinition, EncounterDefinition } from "./encounterEngine.js";
 export { createDungeon, enterNextRoom, clearCurrentRoom } from "./dungeonEngine.js";
 export type { DungeonRoom, DungeonState } from "./dungeonEngine.js";
+
+export { createPersistentPlayer, getAvailableQuests, startCampaignQuest, completeCampaignQuest } from "./campaignGameService.js";
+export type { PersistentPlayerState } from "./campaignGameService.js";
